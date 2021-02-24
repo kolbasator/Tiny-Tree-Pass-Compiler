@@ -8,7 +8,7 @@ namespace Compilier
 {
     public class Compilier
     {
-        public Ast Pass1(string expression)
+        public Ast FirstPass(string expression)
         { 
             return InfixToASTParser.BuildTree(expression);
         }
@@ -81,7 +81,7 @@ namespace Compilier
             var result = InfixToASTParser.Parse(InfixToASTParser.postfixToInfix(string.Join("", resultStack)));
             return result;
         }
-        public List<string> Pass3(Ast tree)
+        public List<string> ThirdPass(Ast tree)
         {
             Simulator.PolishNotation = "";
             Simulator.NodesToPolishNotation(tree);

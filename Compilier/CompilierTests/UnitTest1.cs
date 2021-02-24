@@ -21,7 +21,7 @@ namespace CompilierTests
             string prog = "[ x y z ] ( 2*3*x + 5*y - 3*z ) / (1 + 3 + 2*2)";
             Console.WriteLine("Testing: " + prog);
             Ast t1 = new BinOp("/", new BinOp("-", new BinOp("+", new BinOp("*", new BinOp("*", new UnOp("imm", 2), new UnOp("imm", 3)), new UnOp("arg", 0)), new BinOp("*", new UnOp("imm", 5), new UnOp("arg", 1))), new BinOp("*", new UnOp("imm", 3), new UnOp("arg", 2))), new BinOp("+", new BinOp("+", new UnOp("imm", 1), new UnOp("imm", 3)), new BinOp("*", new UnOp("imm", 2), new UnOp("imm", 2))));
-            Ast p1 = compiler.Pass1(prog);
+            Ast p1 = compiler.FirstPass(prog);
             Simulator.PolishNotation = "";
             Simulator.NodesToPolishNotation(t1);
             string pNt1 = Simulator.PolishNotation;
@@ -34,7 +34,7 @@ namespace CompilierTests
         public void SecondPassTest()
         {
             Ast t2 = new BinOp("/", new BinOp("-", new BinOp("+", new BinOp("*", new UnOp("imm", 6), new UnOp("arg", 0)), new BinOp("*", new UnOp("imm", 5), new UnOp("arg", 1))), new BinOp("*", new UnOp("imm", 3), new UnOp("arg", 2))), new UnOp("imm", 8));
-            Ast p2 = compiler.SecondPass(compiler.Pass1("[ x y z ] ( 2*3*x + 5*y - 3*z ) / (1 + 3 + 2*2)"));
+            Ast p2 = compiler.SecondPass(compiler.FirstPass("[ x y z ] ( 2*3*x + 5*y - 3*z ) / (1 + 3 + 2*2)"));
 
             Simulator.PolishNotation = "";
             Simulator.NodesToPolishNotation(t2);
@@ -48,7 +48,7 @@ namespace CompilierTests
         [Test]
         public void ThirdPassTest()
         { 
-            List<string> p3 = compiler.Pass3(compiler.Pass1("[ x y z ] ( 2*3*x + 5*y - 3*z ) / (1 + 3 + 2*2)"));
+            List<string> p3 = compiler.ThirdPass(compiler.SecondPass(compiler.FirstPass("[ x y z ] ( 2*3*x + 5*y - 3*z ) / (1 + 3 + 2*2)")));
             int[] args = new int[3] { 4, 0, 0 };
             int res = Simulator.Simulate(p3, args);
             if (res != 3) Assert.Fail("prog(4,0,0) == 3 and not " + res + " => wrong solution, aborted!"); else Console.WriteLine("prog(4,0,0) == 3 was ok");
