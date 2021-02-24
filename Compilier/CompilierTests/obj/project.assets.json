@@ -4785,19 +4785,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\777\\.nuget\\packages\\": {}
+    "C:\\Users\\pkolosov\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\777\\Desktop\\Projects\\Tiny-Three-Pass-Compilier\\Compilier\\CompilierTests\\CompilierTests.csproj",
+      "projectUniqueName": "C:\\Users\\pkolosov\\source\\repos\\Tiny-Three-Pass-Compilier\\Compilier\\CompilierTests\\CompilierTests.csproj",
       "projectName": "CompilierTests",
-      "projectPath": "C:\\Users\\777\\Desktop\\Projects\\Tiny-Three-Pass-Compilier\\Compilier\\CompilierTests\\CompilierTests.csproj",
-      "packagesPath": "C:\\Users\\777\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\777\\Desktop\\Projects\\Tiny-Three-Pass-Compilier\\Compilier\\CompilierTests\\obj\\",
+      "projectPath": "C:\\Users\\pkolosov\\source\\repos\\Tiny-Three-Pass-Compilier\\Compilier\\CompilierTests\\CompilierTests.csproj",
+      "packagesPath": "C:\\Users\\pkolosov\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\pkolosov\\source\\repos\\Tiny-Three-Pass-Compilier\\Compilier\\CompilierTests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\777\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\pkolosov\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4805,13 +4805,15 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://pkgs.dev.azure.com/openskydatasystems/_packaging/DCC-NUGET/nuget/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\777\\Desktop\\Projects\\Tiny-Three-Pass-Compilier\\Compilier\\Compilier\\Compilier.csproj": {
-              "projectPath": "C:\\Users\\777\\Desktop\\Projects\\Tiny-Three-Pass-Compilier\\Compilier\\Compilier\\Compilier.csproj"
+            "C:\\Users\\pkolosov\\source\\repos\\Tiny-Three-Pass-Compilier\\Compilier\\Compilier\\Compilier.csproj": {
+              "projectPath": "C:\\Users\\pkolosov\\source\\repos\\Tiny-Three-Pass-Compilier\\Compilier\\Compilier\\Compilier.csproj"
             }
           }
         }
@@ -4824,6 +4826,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "FluentAssertions": {
             "target": "Package",
@@ -4857,7 +4860,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
       }
     }
   }

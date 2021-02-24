@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "0kC+vmCJQkiOJYH4d37ASmqh6OAJ+mvEI7bX0JFnKr8DXdcpI/k+IqnNNBC5Yt6cGcleQbqn3Vu78CbjqBcNXw==",
+  "dgSpecHash": "vSPyXhZ8Q/tK9OSA8yz8vPYcHZEj2BwdwBLdpEPhot0EVJKar7jj0Z0NfjPkxOS6xBP5CcabzdzjsQELzoIHNg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\777\\Desktop\\Projects\\Tiny-Three-Pass-Compilier\\Compilier\\Compilier\\Compilier.csproj",
+  "projectFilePath": "C:\\Users\\pkolosov\\source\\repos\\Tiny-Three-Pass-Compilier\\Compilier\\Compilier\\Compilier.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\777\\.nuget\\packages\\fluentassertions\\5.10.3\\fluentassertions.5.10.3.nupkg.sha512",
-    "C:\\Users\\777\\.nuget\\packages\\system.configuration.configurationmanager\\4.4.0\\system.configuration.configurationmanager.4.4.0.nupkg.sha512",
-    "C:\\Users\\777\\.nuget\\packages\\system.security.cryptography.protecteddata\\4.4.0\\system.security.cryptography.protecteddata.4.4.0.nupkg.sha512"
+    "C:\\Users\\pkolosov\\.nuget\\packages\\fluentassertions\\5.10.3\\fluentassertions.5.10.3.nupkg.sha512",
+    "C:\\Users\\pkolosov\\.nuget\\packages\\system.configuration.configurationmanager\\4.4.0\\system.configuration.configurationmanager.4.4.0.nupkg.sha512",
+    "C:\\Users\\pkolosov\\.nuget\\packages\\system.security.cryptography.protecteddata\\4.4.0\\system.security.cryptography.protecteddata.4.4.0.nupkg.sha512"
   ],
   "logs": []
 }
