@@ -4790,11 +4790,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\777\\Desktop\\Projects\\Compilier\\CompilierTests\\CompilierTests.csproj",
+      "projectUniqueName": "C:\\Users\\777\\Desktop\\Projects\\Tiny-Three-Pass-Compilier\\Compilier\\CompilierTests\\CompilierTests.csproj",
       "projectName": "CompilierTests",
-      "projectPath": "C:\\Users\\777\\Desktop\\Projects\\Compilier\\CompilierTests\\CompilierTests.csproj",
+      "projectPath": "C:\\Users\\777\\Desktop\\Projects\\Tiny-Three-Pass-Compilier\\Compilier\\CompilierTests\\CompilierTests.csproj",
       "packagesPath": "C:\\Users\\777\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\777\\Desktop\\Projects\\Compilier\\CompilierTests\\obj\\",
+      "outputPath": "C:\\Users\\777\\Desktop\\Projects\\Tiny-Three-Pass-Compilier\\Compilier\\CompilierTests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\777\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -4810,8 +4810,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\777\\Desktop\\Projects\\Compilier\\Compilier\\Compilier.csproj": {
-              "projectPath": "C:\\Users\\777\\Desktop\\Projects\\Compilier\\Compilier\\Compilier.csproj"
+            "C:\\Users\\777\\Desktop\\Projects\\Tiny-Three-Pass-Compilier\\Compilier\\Compilier\\Compilier.csproj": {
+              "projectPath": "C:\\Users\\777\\Desktop\\Projects\\Tiny-Three-Pass-Compilier\\Compilier\\Compilier\\Compilier.csproj"
             }
           }
         }

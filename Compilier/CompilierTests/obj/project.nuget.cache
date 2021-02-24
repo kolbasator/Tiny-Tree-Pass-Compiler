@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GJHOGBk1OyLEEGSJXOo2fMbZ6rFER5Qi2bCb+CTdz3I4khU8n/qU6OW1bfsLmWRrpLzXmZNf/iHFrjmhcsXNtg==",
+  "dgSpecHash": "r7GHl9/iaxK5HNzCtmlWrXDWVBufbYvgJRVbq1EqgR+zV1RUobRx0XpTlQVk5y73Y+zcGdvOk8/pPBPUgG8+/Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\777\\Desktop\\Projects\\Compilier\\CompilierTests\\CompilierTests.csproj",
+  "projectFilePath": "C:\\Users\\777\\Desktop\\Projects\\Tiny-Three-Pass-Compilier\\Compilier\\CompilierTests\\CompilierTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\777\\.nuget\\packages\\fluentassertions\\5.10.3\\fluentassertions.5.10.3.nupkg.sha512",
     "C:\\Users\\777\\.nuget\\packages\\microsoft.codecoverage\\16.4.0\\microsoft.codecoverage.16.4.0.nupkg.sha512",

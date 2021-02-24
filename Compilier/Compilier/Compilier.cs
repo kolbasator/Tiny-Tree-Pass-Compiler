@@ -12,11 +12,11 @@ namespace Compilier
         { 
             return InfixToASTParser.BuildTree(expression);
         }
-        public Ast Pass2(Ast tree)
+        public Ast SecondPass(Ast tree)
         {
-            Simulator.polishNotation = "";
-            Simulator.nodesToPolishNotation(tree);
-            var tokens= InfixToASTParser.ShuntingYardAlgorithm(InfixToASTParser.postfixToInfix(Simulator.polishNotation));
+            Simulator.PolishNotation = "";
+            Simulator.NodesToPolishNotation(tree);
+            var tokens= InfixToASTParser.ShuntingYardAlgorithm(InfixToASTParser.postfixToInfix(Simulator.PolishNotation));
             List<string> resultStack = new List<string>();
             foreach (var token in tokens)
             {
@@ -83,9 +83,9 @@ namespace Compilier
         }
         public List<string> Pass3(Ast tree)
         {
-            Simulator.polishNotation = "";
-            Simulator.nodesToPolishNotation(tree);
-            return InfixToASTParser.postfixToInfix(Simulator.polishNotation).ToCharArray().Select(x=>Convert.ToString(x)).ToList();
+            Simulator.PolishNotation = "";
+            Simulator.NodesToPolishNotation(tree);
+            return InfixToASTParser.postfixToInfix(Simulator.PolishNotation).ToCharArray().Select(x=>Convert.ToString(x)).ToList();
 
         }
     }

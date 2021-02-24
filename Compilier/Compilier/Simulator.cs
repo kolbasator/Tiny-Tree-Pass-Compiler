@@ -7,8 +7,8 @@ namespace Compilier
 {
     public static class Simulator
     {
-        public static string polishNotation="";
-        public static int simulate(List<string> pass3,int[] args)
+        public static string PolishNotation="";
+        public static int Simulate(List<string> pass3,int[] args)
         { 
             var list= InfixToASTParser.ShuntingYardAlgorithm(string.Join("", pass3));
             List<string> tokens = new List<string>();
@@ -55,7 +55,7 @@ namespace Compilier
             var result = resultStack.Pop();
             return result;
         }
-        public static void nodesToPolishNotation(Ast tree)
+        public static void NodesToPolishNotation(Ast tree)
         {
             if (tree != null)
             {
@@ -65,18 +65,18 @@ namespace Compilier
                     var unOpTree = tree as UnOp;
                     if (unOpTree.Status == "arg")
                     {
-                        polishNotation += InfixToASTParser.expressionArgs[unOpTree.Value].ToString();
+                        PolishNotation += InfixToASTParser.expressionArgs[unOpTree.Value].ToString();
                     }
                     else
                     {
-                        polishNotation += unOpTree.Value.ToString();
+                        PolishNotation += unOpTree.Value.ToString();
                     }
                 }
                 else if (newTree.leftChild != null && newTree.rightChild != null)
                 {
-                    nodesToPolishNotation(newTree.leftChild);
-                    nodesToPolishNotation(newTree.rightChild);
-                    polishNotation += newTree.Value;
+                    NodesToPolishNotation(newTree.leftChild);
+                    NodesToPolishNotation(newTree.rightChild);
+                    PolishNotation += newTree.Value;
                 }
             }
         }

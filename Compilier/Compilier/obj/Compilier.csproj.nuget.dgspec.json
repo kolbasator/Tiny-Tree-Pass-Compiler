@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\777\\Desktop\\Projects\\Compilier\\Compilier\\Compilier.csproj": {}
+    "C:\\Users\\777\\Desktop\\Projects\\Tiny-Three-Pass-Compilier\\Compilier\\Compilier\\Compilier.csproj": {}
   },
   "projects": {
-    "C:\\Users\\777\\Desktop\\Projects\\Compilier\\Compilier\\Compilier.csproj": {
+    "C:\\Users\\777\\Desktop\\Projects\\Tiny-Three-Pass-Compilier\\Compilier\\Compilier\\Compilier.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\777\\Desktop\\Projects\\Compilier\\Compilier\\Compilier.csproj",
+        "projectUniqueName": "C:\\Users\\777\\Desktop\\Projects\\Tiny-Three-Pass-Compilier\\Compilier\\Compilier\\Compilier.csproj",
         "projectName": "Compilier",
-        "projectPath": "C:\\Users\\777\\Desktop\\Projects\\Compilier\\Compilier\\Compilier.csproj",
+        "projectPath": "C:\\Users\\777\\Desktop\\Projects\\Tiny-Three-Pass-Compilier\\Compilier\\Compilier\\Compilier.csproj",
         "packagesPath": "C:\\Users\\777\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\777\\Desktop\\Projects\\Compilier\\Compilier\\obj\\",
+        "outputPath": "C:\\Users\\777\\Desktop\\Projects\\Tiny-Three-Pass-Compilier\\Compilier\\Compilier\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\777\\AppData\\Roaming\\NuGet\\NuGet.Config",

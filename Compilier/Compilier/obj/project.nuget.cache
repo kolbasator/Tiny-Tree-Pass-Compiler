@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "QkCjK6oLebkwKCqujth61loKtgW4C10KwJrYYMcb8c8KKl5uH/15thbSJ3RnAyKx4qFR09xwB5ISXsEdhOerkw==",
+  "dgSpecHash": "0kC+vmCJQkiOJYH4d37ASmqh6OAJ+mvEI7bX0JFnKr8DXdcpI/k+IqnNNBC5Yt6cGcleQbqn3Vu78CbjqBcNXw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\777\\Desktop\\Projects\\Compilier\\Compilier\\Compilier.csproj",
+  "projectFilePath": "C:\\Users\\777\\Desktop\\Projects\\Tiny-Three-Pass-Compilier\\Compilier\\Compilier\\Compilier.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\777\\.nuget\\packages\\fluentassertions\\5.10.3\\fluentassertions.5.10.3.nupkg.sha512",
     "C:\\Users\\777\\.nuget\\packages\\system.configuration.configurationmanager\\4.4.0\\system.configuration.configurationmanager.4.4.0.nupkg.sha512",
