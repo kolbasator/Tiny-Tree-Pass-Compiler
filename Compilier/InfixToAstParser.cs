@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace Compilier
 {
-    public class InfixToASTParser
+    public class InfixToAstParser
     {
         public static List<string> ExpressionArgs;
         public static bool IsOperator(string symbol)
@@ -114,8 +114,8 @@ namespace Compilier
             string patternToFixExpression = @"[a-zA-Z]+|[0-9]+|[+*/()-\[ \]]";
             var newExpression = Regex.Replace(expression.Replace(" ", ""), patternToFixExpression, "$0 ").Trim();
             var postfix = ShuntingYardAlgorithm(newExpression);//Получаем выражение в польской нотации 
-            Stack<Ast> st = new Stack<Ast>();//Создаем стек для узлов
-            Ast t, t1, t2;
+            Stack<AbstractSyntaxTree> st = new Stack<AbstractSyntaxTree>();//Создаем стек для узлов
+            AbstractSyntaxTree t, t1, t2;
             for (int i = 0; i < postfix.Count; i++)
             {
                 if (IsOperator(postfix[i]))
@@ -156,8 +156,8 @@ namespace Compilier
             }
             ExpressionArgs = args;
             var postfix = ShuntingYardAlgorithm(newExpression);//Получаем выражение в польской нотации 
-            Stack<Ast> st = new Stack<Ast>();//Создаем стек для узлов
-            Ast t, t1, t2;
+            Stack<AbstractSyntaxTree> st = new Stack<AbstractSyntaxTree>();//Создаем стек для узлов
+            AbstractSyntaxTree t, t1, t2;
             for (int i = 0; i < postfix.Count; i++)
             {
                 if (IsOperator(postfix[i]))

@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Compiler", "Compiler\Compiler.csproj", "{A05B6FCB-F32E-4ACA-8E76-7CB1F937DF91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Compilier", "Compilier\Compilier.csproj", "{A05B6FCB-F32E-4ACA-8E76-7CB1F937DF91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compiler.Tests", "Compiler.Tests\Compiler.Tests.csproj", "{EBB8CB6E-445E-47B9-98FC-6EECC7AED854}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompilierTests", "CompilierTests\CompilierTests.csproj", "{EBB8CB6E-445E-47B9-98FC-6EECC7AED854}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

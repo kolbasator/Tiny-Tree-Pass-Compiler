@@ -6,17 +6,17 @@ using System.Text.RegularExpressions;
 
 namespace Compilier
 {
-    public class Compilier
+    public class Compiler
     {
-        public Ast FirstPass(string expression)
+        public AbstractSyntaxTree FirstPass(string expression)
         { 
-            return InfixToASTParser.BuildTree(expression);
+            return InfixToAstParser.BuildTree(expression);
         }
-        public Ast SecondPass(Ast tree)
+        public AbstractSyntaxTree SecondPass(AbstractSyntaxTree tree)
         {
             Simulator.PolishNotation = "";
             Simulator.NodesToPolishNotation(tree);
-            var tokens= InfixToASTParser.ShuntingYardAlgorithm(InfixToASTParser.PostfixToInfix(Simulator.PolishNotation));
+            var tokens= InfixToAstParser.ShuntingYardAlgorithm(InfixToAstParser.PostfixToInfix(Simulator.PolishNotation));
             List<string> resultStack = new List<string>();
             foreach (var token in tokens)
             {
@@ -78,14 +78,14 @@ namespace Compilier
                         break;
                 }
             }
-            var result = InfixToASTParser.Parse(InfixToASTParser.PostfixToInfix(string.Join("", resultStack)));
+            var result = InfixToAstParser.Parse(InfixToAstParser.PostfixToInfix(string.Join("", resultStack)));
             return result;
         }
-        public List<string> ThirdPass(Ast tree)
+        public List<string> ThirdPass(AbstractSyntaxTree tree)
         {
             Simulator.PolishNotation = "";
             Simulator.NodesToPolishNotation(tree);
-            return InfixToASTParser.PostfixToInfix(Simulator.PolishNotation).ToCharArray().Select(x=>Convert.ToString(x)).ToList();
+            return InfixToAstParser.PostfixToInfix(Simulator.PolishNotation).ToCharArray().Select(x=>Convert.ToString(x)).ToList();
 
         }
     }

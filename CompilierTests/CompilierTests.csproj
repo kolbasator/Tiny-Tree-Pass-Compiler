@@ -4,8 +4,6 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
 
     <IsPackable>false</IsPackable>
-
-    <RootNamespace>Compiler.Tests</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Compiler\Compiler.csproj" />
+    <ProjectReference Include="..\Compilier\Compilier.csproj" />
   </ItemGroup>
 
 </Project>

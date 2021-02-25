@@ -10,14 +10,14 @@ namespace Compilier
         public static string PolishNotation=string.Empty;
         public static int Calculate(List<string> pass3,int[] args)
         { 
-            var list= InfixToASTParser.ShuntingYardAlgorithm(string.Join("", pass3));
+            var list= InfixToAstParser.ShuntingYardAlgorithm(string.Join("", pass3));
             string patternToFindLetters = @"[a-z]+$";
             List<string> tokens = new List<string>();
             foreach (var element in list)
             {
                 if (Regex.IsMatch(element.ToString(), patternToFindLetters))
                 { 
-                    int value = args[InfixToASTParser.ExpressionArgs.IndexOf(element.ToString())];
+                    int value = args[InfixToAstParser.ExpressionArgs.IndexOf(element.ToString())];
                     tokens.Add(value.ToString());
                 }
                 else
@@ -30,7 +30,7 @@ namespace Compilier
             {
                 int leftOperand;
                 int rightOperand;
-                if (InfixToASTParser.IsNumber(token.ToString()))
+                if (InfixToAstParser.IsNumber(token.ToString()))
                 {
                     resultStack.Push(int.Parse(token.ToString()));
                 }
@@ -56,7 +56,7 @@ namespace Compilier
             var result = resultStack.Pop();
             return result;
         }
-        public static void NodesToPolishNotation(Ast tree)
+        public static void NodesToPolishNotation(AbstractSyntaxTree tree)
         {
             if (tree != null)
             {
@@ -66,17 +66,17 @@ namespace Compilier
                     var unOpTree = tree as UnOp;
                     if (unOpTree.Status == "arg")
                     {
-                        PolishNotation += InfixToASTParser.ExpressionArgs[unOpTree.Value].ToString();
+                        PolishNotation += InfixToAstParser.ExpressionArgs[unOpTree.Value].ToString();
                     }
                     else
                     {
                         PolishNotation += unOpTree.Value.ToString();
                     }
                 }
-                else if (newTree.leftChild != null && newTree.rightChild != null)
+                else if (newTree.LeftChild != null && newTree.RightChild != null)
                 {
-                    NodesToPolishNotation(newTree.leftChild);
-                    NodesToPolishNotation(newTree.rightChild);
+                    NodesToPolishNotation(newTree.LeftChild);
+                    NodesToPolishNotation(newTree.RightChild);
                     PolishNotation += newTree.Value;
                 }
             }
