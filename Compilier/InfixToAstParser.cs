@@ -16,21 +16,12 @@ namespace Compilier
         static int Priority(string symbol)
         {
             if (symbol == "*" || symbol == "/")
-            {
                 return 3;
-            }
-            else if (symbol == "+" || symbol == "-")
-            {
-                return 2;
-            }
-            else if (symbol == "(")
-            {
-                return 1;
-            }
-            else
-            {
-                return -1;
-            }
+            else if (symbol == "+" || symbol == "-") 
+                return 2; 
+            else if (symbol == "(") 
+                return 1;  
+            return -1; 
         }
         public static bool IsNumber(string n)
         {
@@ -82,8 +73,7 @@ namespace Compilier
                 {
                     case "(":
                         operators.Push(tokens[i]);
-                        break;
-                    case "^":
+                        break; 
                     case "*":
                     case "/":
                     case "+":

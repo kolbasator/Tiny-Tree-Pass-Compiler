@@ -59,18 +59,17 @@ namespace Compilier
         public static void NodesToPolishNotation(AbstractSyntaxTree tree)
         {
             if (tree != null)
-            {
-                var newTree = tree as BinOp;
-                if(newTree==null)
+            { 
+                if(!(tree is BinOp newTree))
                 {
                     var unOpTree = tree as UnOp;
                     if (unOpTree.Status == "arg")
                     {
-                        PolishNotation += InfixToAstParser.ExpressionArgs[unOpTree.Value].ToString();
+                        PolishNotation += InfixToAstParser.ExpressionArgs[int.Parse(unOpTree.Value)];
                     }
                     else
                     {
-                        PolishNotation += unOpTree.Value.ToString();
+                        PolishNotation += unOpTree.Value;
                     }
                 }
                 else if (newTree.LeftChild != null && newTree.RightChild != null)

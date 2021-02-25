@@ -14,6 +14,7 @@ namespace CompilierTests
         {
         }
         public Compiler compiler = new Compiler();
+        [Test]
         public void TestSimpleProg()
         {
             string prog = "[ x y z ] ( 2*3*x + 5*y - 3*z ) / (1 + 3 + 2*2)";
