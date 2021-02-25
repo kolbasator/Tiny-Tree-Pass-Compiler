@@ -17,11 +17,11 @@ namespace Compilier
         {
             if (symbol == "*" || symbol == "/")
                 return 3;
-            else if (symbol == "+" || symbol == "-") 
-                return 2; 
-            else if (symbol == "(") 
-                return 1;  
-            return -1; 
+            else if (symbol == "+" || symbol == "-")
+                return 2;
+            else if (symbol == "(")
+                return 1;
+            return -1;
         }
         public static bool IsNumber(string n)
         {
@@ -52,7 +52,7 @@ namespace Compilier
         }
         public static List<string> ShuntingYardAlgorithm(string expr)
         {
-            string patternToFixExpression=@"[a-zA-Z]+|[0-9]+|[+*/()-]";
+            string patternToFixExpression = @"[a-zA-Z]+|[0-9]+|[+*/()-]";
             var expression = Regex.Replace(expr.Replace(" ", ""), patternToFixExpression, "$0 ").Trim();
             string[] tokens = expression.Split(null);
             List<string> output = new List<string>();
@@ -73,7 +73,7 @@ namespace Compilier
                 {
                     case "(":
                         operators.Push(tokens[i]);
-                        break; 
+                        break;
                     case "*":
                     case "/":
                     case "+":
@@ -99,7 +99,7 @@ namespace Compilier
             }
             return output;
         }
-        public static BinOp Parse(string expression)
+        public static AstOperator Parse(string expression)
         {
             string patternToFixExpression = @"[a-zA-Z]+|[0-9]+|[+*/()-\[ \]]";
             var newExpression = Regex.Replace(expression.Replace(" ", ""), patternToFixExpression, "$0 ").Trim();
@@ -112,25 +112,25 @@ namespace Compilier
                 {
                     t1 = st.Pop();
                     t2 = st.Pop();
-                    t = new BinOp(postfix[i].ToString(), t2, t1); //Если элемент оператор то берем два последних узла из стека и создаем новый узел со значением равным текущему символу 
+                    t = new AstOperator(postfix[i].ToString(), t2, t1); //Если элемент оператор то берем два последних узла из стека и создаем новый узел со значением равным текущему символу 
                     st.Push(t);
                 }
                 else if (Regex.IsMatch(postfix[i].ToString(), @"[a-z]+$"))
                 {
-                    t = new UnOp("arg", ExpressionArgs.IndexOf(postfix[i]));
+                    t = new AstOperand("arg", ExpressionArgs.IndexOf(postfix[i]));
                     st.Push(t);
                 }
                 else if (IsNumber(postfix[i]))
                 {
-                    t = new UnOp("imm", Convert.ToInt32(postfix[i]));//Если Элемент число то просто добавляем в стек новый узел без дочерних элементов
+                    t = new AstOperand("imm", Convert.ToInt32(postfix[i]));//Если Элемент число то просто добавляем в стек новый узел без дочерних элементов
                     st.Push(t);
                 }
             }
             t = st.Peek();
             st.Pop();
-            return (BinOp)t;//Последний элемент в стеке и будет корнем нашего дерева
+            return (AstOperator)t;//Последний элемент в стеке и будет корнем нашего дерева
         }
-        public static BinOp BuildTree(string expression)
+        public static AstOperator BuildTree(string expression)
         {
             string patternToFixExpression = @"[a-zA-Z]+|[0-9]+|[+*/()-\[ \]]";
             expression = Regex.Replace(expression.Replace(" ", ""), patternToFixExpression, "$0 ").Trim();
@@ -154,23 +154,23 @@ namespace Compilier
                 {
                     t1 = st.Pop();
                     t2 = st.Pop();
-                    t = new BinOp(postfix[i].ToString(), t2, t1); //Если элемент оператор то берем два последних узла из стека и создаем новый узел со значением равным текущему символу 
+                    t = new AstOperator(postfix[i].ToString(), t2, t1); //Если элемент оператор то берем два последних узла из стека и создаем новый узел со значением равным текущему символу 
                     st.Push(t);
                 }
                 else if (Regex.IsMatch(postfix[i].ToString(), @"[a-z]+$"))
                 {
-                    t = new UnOp("arg", args.IndexOf(postfix[i]));
+                    t = new AstOperand("arg", args.IndexOf(postfix[i]));
                     st.Push(t);
                 }
                 else if (IsNumber(postfix[i]))
                 {
-                    t = new UnOp("imm", Convert.ToInt32(postfix[i]));//Если Элемент число то просто добавляем в стек новый узел без дочерних элементов
+                    t = new AstOperand("imm", Convert.ToInt32(postfix[i]));//Если Элемент число то просто добавляем в стек новый узел без дочерних элементов
                     st.Push(t);
                 }
             }
             t = st.Peek();
             st.Pop();
-            return (BinOp)t;//Последний элемент в стеке и будет корнем нашего дерева
-        }  
+            return (AstOperator)t;//Последний элемент в стеке и будет корнем нашего дерева
+        }
     }
 }

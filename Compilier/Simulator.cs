@@ -7,16 +7,16 @@ namespace Compilier
 {
     public static class Simulator
     {
-        public static string PolishNotation=string.Empty;
-        public static int Calculate(List<string> pass3,int[] args)
-        { 
-            var list= InfixToAstParser.ShuntingYardAlgorithm(string.Join("", pass3));
+        public static string PolishNotation = string.Empty;
+        public static int Calculate(List<string> pass3, int[] args)
+        {
+            var list = InfixToAstParser.ShuntingYardAlgorithm(string.Join("", pass3));
             string patternToFindLetters = @"[a-z]+$";
             List<string> tokens = new List<string>();
             foreach (var element in list)
             {
                 if (Regex.IsMatch(element.ToString(), patternToFindLetters))
-                { 
+                {
                     int value = args[InfixToAstParser.ExpressionArgs.IndexOf(element.ToString())];
                     tokens.Add(value.ToString());
                 }
@@ -24,8 +24,8 @@ namespace Compilier
                 {
                     tokens.Add(element.ToString());
                 }
-            } 
-            Stack<int> resultStack = new Stack<int>(); 
+            }
+            Stack<int> resultStack = new Stack<int>();
             foreach (var token in tokens)
             {
                 int leftOperand;
@@ -50,7 +50,7 @@ namespace Compilier
                         rightOperand = resultStack.Pop();
                         leftOperand = resultStack.Pop();
                         resultStack.Push(leftOperand / rightOperand);
-                        break; 
+                        break;
                 }
             }
             var result = resultStack.Pop();
@@ -59,10 +59,10 @@ namespace Compilier
         public static void NodesToPolishNotation(AbstractSyntaxTree tree)
         {
             if (tree != null)
-            { 
-                if(!(tree is BinOp newTree))
+            {
+                if (!(tree is AstOperator newTree))
                 {
-                    var unOpTree = tree as UnOp;
+                    var unOpTree = tree as AstOperand;
                     if (unOpTree.Status == "arg")
                     {
                         PolishNotation += InfixToAstParser.ExpressionArgs[int.Parse(unOpTree.Value)];

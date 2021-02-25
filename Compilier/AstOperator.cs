@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Compilier
 {
-    public class BinOp : AbstractSyntaxTree
-    { 
-        public BinOp(string value,AbstractSyntaxTree left,AbstractSyntaxTree right)
+    public class AstOperator : AbstractSyntaxTree
+    {
+        public AstOperator(string value, AbstractSyntaxTree left, AbstractSyntaxTree right)
         {
             Value = value;
             LeftChild = left;
