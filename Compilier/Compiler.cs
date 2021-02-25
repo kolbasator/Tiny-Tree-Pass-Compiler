@@ -50,9 +50,8 @@ namespace Compilier
                         resultStack.Add(Convert.ToString(Convert.ToInt32(leftOperand) / Convert.ToInt32(rightOperand)));
                         break;
                 }
-            }
-            var result = InfixToAstParser.Parse(InfixToAstParser.PostfixToInfix(string.Join("", resultStack)));
-            return result;
+            } 
+            return InfixToAstParser.Parse(InfixToAstParser.PostfixToInfix(string.Join("", resultStack)));
         }
         public List<string> ThirdPass(AbstractSyntaxTree tree)
         {
