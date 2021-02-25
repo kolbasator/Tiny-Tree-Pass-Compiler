@@ -7,21 +7,22 @@ namespace Compilier
 {
     public static class Simulator
     {
-        public static string PolishNotation="";
-        public static int Simulate(List<string> pass3,int[] args)
+        public static string PolishNotation=string.Empty;
+        public static int Calculate(List<string> pass3,int[] args)
         { 
             var list= InfixToASTParser.ShuntingYardAlgorithm(string.Join("", pass3));
+            string patternToFindLetters = @"[a-z]+$";
             List<string> tokens = new List<string>();
-            foreach (var g in list)
+            foreach (var element in list)
             {
-                if (Regex.IsMatch(g.ToString(), @"[a-z]+$"))
+                if (Regex.IsMatch(element.ToString(), patternToFindLetters))
                 { 
-                    int value = args[InfixToASTParser.expressionArgs.IndexOf(g.ToString())];
+                    int value = args[InfixToASTParser.ExpressionArgs.IndexOf(element.ToString())];
                     tokens.Add(value.ToString());
                 }
                 else
                 {
-                    tokens.Add(g.ToString());
+                    tokens.Add(element.ToString());
                 }
             } 
             Stack<int> resultStack = new Stack<int>(); 
@@ -65,7 +66,7 @@ namespace Compilier
                     var unOpTree = tree as UnOp;
                     if (unOpTree.Status == "arg")
                     {
-                        PolishNotation += InfixToASTParser.expressionArgs[unOpTree.Value].ToString();
+                        PolishNotation += InfixToASTParser.ExpressionArgs[unOpTree.Value].ToString();
                     }
                     else
                     {

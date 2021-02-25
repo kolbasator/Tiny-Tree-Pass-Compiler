@@ -8,8 +8,8 @@ namespace Compilier
 {
     public class InfixToASTParser
     {
-        public static List<string> expressionArgs;
-        public static bool isOperator(string symbol)
+        public static List<string> ExpressionArgs;
+        public static bool IsOperator(string symbol)
         {
             return symbol == "*" || symbol == "/" || symbol == "-" || symbol == "+";
         }
@@ -38,30 +38,31 @@ namespace Compilier
             bool isNumeric = double.TryParse(n, out retNum);
             return isNumeric;
         }
-        public static string postfixToInfix(string expression)
+        public static string PostfixToInfix(string expression)
         {
-            Stack<string> stack = new Stack<string>();
+            Stack<string> resultStack = new Stack<string>();
             for (int i = 0; i < expression.Length; i++)
             {
                 char c = expression[i];
                 if (c == '*' || c == '/' || c == '+' || c == '-')
                 {
-                    string s1 = stack.Pop();
-                    string s2 = stack.Pop();
+                    string s1 = resultStack.Pop();
+                    string s2 = resultStack.Pop();
                     string temp = "(" + s2 + c + s1 + ")";
-                    stack.Push(temp);
+                    resultStack.Push(temp);
                 }
                 else
                 {
-                    stack.Push(c + "");
+                    resultStack.Push(c + "");
                 }
             }
-            string result = stack.Pop();
+            string result = resultStack.Pop();
             return result;
         }
         public static List<string> ShuntingYardAlgorithm(string expr)
         {
-            var expression = Regex.Replace(expr.Replace(" ", ""), "[a-zA-Z]+|[0-9]+|[+*/()-]", "$0 ").Trim();
+            string patternToFixExpression=@"[a-zA-Z]+|[0-9]+|[+*/()-]";
+            var expression = Regex.Replace(expr.Replace(" ", ""), patternToFixExpression, "$0 ").Trim();
             string[] tokens = expression.Split(null);
             List<string> output = new List<string>();
             Stack<string> operators = new Stack<string>();
@@ -110,13 +111,14 @@ namespace Compilier
         }
         public static BinOp Parse(string expression)
         {
-            var newExpression = Regex.Replace(expression.Replace(" ", ""), @"[a-zA-Z]+|[0-9]+|[+*/()-\[ \]]", "$0 ").Trim();
+            string patternToFixExpression = @"[a-zA-Z]+|[0-9]+|[+*/()-\[ \]]";
+            var newExpression = Regex.Replace(expression.Replace(" ", ""), patternToFixExpression, "$0 ").Trim();
             var postfix = ShuntingYardAlgorithm(newExpression);//Получаем выражение в польской нотации 
             Stack<Ast> st = new Stack<Ast>();//Создаем стек для узлов
             Ast t, t1, t2;
             for (int i = 0; i < postfix.Count; i++)
             {
-                if (isOperator(postfix[i]))
+                if (IsOperator(postfix[i]))
                 {
                     t1 = st.Pop();
                     t2 = st.Pop();
@@ -125,7 +127,7 @@ namespace Compilier
                 }
                 else if (Regex.IsMatch(postfix[i].ToString(), @"[a-z]+$"))
                 {
-                    t = new UnOp("arg", expressionArgs.IndexOf(postfix[i]));
+                    t = new UnOp("arg", ExpressionArgs.IndexOf(postfix[i]));
                     st.Push(t);
                 }
                 else if (IsNumber(postfix[i]))
@@ -136,11 +138,12 @@ namespace Compilier
             }
             t = st.Peek();
             st.Pop();
-            return (BinOp)t;//Последний элемент в стеке и будет корнем нашего дерева*/*/
+            return (BinOp)t;//Последний элемент в стеке и будет корнем нашего дерева
         }
         public static BinOp BuildTree(string expression)
         {
-            expression = Regex.Replace(expression.Replace(" ", ""), @"[a-zA-Z]+|[0-9]+|[+*/()-\[ \]]", "$0 ").Trim();
+            string patternToFixExpression = @"[a-zA-Z]+|[0-9]+|[+*/()-\[ \]]";
+            expression = Regex.Replace(expression.Replace(" ", ""), patternToFixExpression, "$0 ").Trim();
             string[] parts = expression.Split("] ");
             string newExpression = parts[1];
             List<string> args = new List<string>();
@@ -151,13 +154,13 @@ namespace Compilier
                     args.Add(l.ToString());
                 }
             }
-            expressionArgs = args;
+            ExpressionArgs = args;
             var postfix = ShuntingYardAlgorithm(newExpression);//Получаем выражение в польской нотации 
             Stack<Ast> st = new Stack<Ast>();//Создаем стек для узлов
             Ast t, t1, t2;
             for (int i = 0; i < postfix.Count; i++)
             {
-                if (isOperator(postfix[i]))
+                if (IsOperator(postfix[i]))
                 {
                     t1 = st.Pop();
                     t2 = st.Pop();
@@ -177,7 +180,7 @@ namespace Compilier
             }
             t = st.Peek();
             st.Pop();
-            return (BinOp)t;//Последний элемент в стеке и будет корнем нашего дерева*/*/
+            return (BinOp)t;//Последний элемент в стеке и будет корнем нашего дерева
         }  
     }
 }

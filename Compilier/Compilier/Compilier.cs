@@ -16,7 +16,7 @@ namespace Compilier
         {
             Simulator.PolishNotation = "";
             Simulator.NodesToPolishNotation(tree);
-            var tokens= InfixToASTParser.ShuntingYardAlgorithm(InfixToASTParser.postfixToInfix(Simulator.PolishNotation));
+            var tokens= InfixToASTParser.ShuntingYardAlgorithm(InfixToASTParser.PostfixToInfix(Simulator.PolishNotation));
             List<string> resultStack = new List<string>();
             foreach (var token in tokens)
             {
@@ -78,14 +78,14 @@ namespace Compilier
                         break;
                 }
             }
-            var result = InfixToASTParser.Parse(InfixToASTParser.postfixToInfix(string.Join("", resultStack)));
+            var result = InfixToASTParser.Parse(InfixToASTParser.PostfixToInfix(string.Join("", resultStack)));
             return result;
         }
         public List<string> ThirdPass(Ast tree)
         {
             Simulator.PolishNotation = "";
             Simulator.NodesToPolishNotation(tree);
-            return InfixToASTParser.postfixToInfix(Simulator.PolishNotation).ToCharArray().Select(x=>Convert.ToString(x)).ToList();
+            return InfixToASTParser.PostfixToInfix(Simulator.PolishNotation).ToCharArray().Select(x=>Convert.ToString(x)).ToList();
 
         }
     }
