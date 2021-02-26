@@ -6,16 +6,16 @@ using Compilier;
 
 namespace CompilierTests
 { 
-    public class ThirdSimpleProgTest
+    public class FourSimpleProgTest
     { 
         [Test]
-        public void SimpleProgThirdTest()
+        public void SimpleProgFourTest()
         {
             var compiler = new Compiler();
-            var p3 = compiler.ThirdPass(compiler.SecondPass(compiler.FirstPass("[ h g u ] h + g + u")));
-            var args = new int[3] { 200 ,30,1000 };
+            var p3 = compiler.ThirdPass(compiler.SecondPass(compiler.FirstPass("[ h g u o ] h + g + u * o * ( 2 + 2 )")));
+            var args = new int[4] { 11,12,13,14 };
             var res = Simulator.Calculate(p3, args);
-            res.Should().Be(1230);
+            res.Should().Be(751);
         }
     }
 }
