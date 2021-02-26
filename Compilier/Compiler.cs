@@ -26,8 +26,8 @@ namespace Compilier
                     resultStack.Add(token.ToString());
                     continue;
                 }
-                string leftOperand = resultStack[resultStack.Count - 2];
                 string rightOperand = resultStack[resultStack.Count - 1];
+                string leftOperand = resultStack[resultStack.Count - 2]; 
                 if (!Regex.IsMatch(rightOperand.ToString(), @"[0-9]+$") || !Regex.IsMatch(leftOperand.ToString(), @"[0-9]+$"))
                 {
                     resultStack.Add(token);

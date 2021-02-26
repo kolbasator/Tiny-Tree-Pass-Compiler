@@ -30,7 +30,7 @@ namespace Compilier
             return isNumeric;
         }
         public static string PostfixToInfix(string expression)
-        {
+        { 
             Stack<string> resultStack = new Stack<string>();
             for (int i = 0; i < expression.Length; i++)
             {
