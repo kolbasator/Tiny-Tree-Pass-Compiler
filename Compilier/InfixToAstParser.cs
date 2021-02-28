@@ -29,13 +29,13 @@ namespace Compilier
             bool isNumeric = double.TryParse(n, out retNum);
             return isNumeric;
         }
-        public static string PostfixToInfix(string expression)
+        public static string PostfixToInfix(List<string> expression)
         { 
             Stack<string> resultStack = new Stack<string>();
-            for (int i = 0; i < expression.Length; i++)
+            for (int i = 0; i < expression.Count; i++)
             {
-                char c = expression[i];
-                if (c == '*' || c == '/' || c == '+' || c == '-')
+                string c = expression[i];
+                if (c == "*" || c == "/" || c == "+"|| c == "-")
                 {
                     string s1 = resultStack.Pop();
                     string s2 = resultStack.Pop();
@@ -52,8 +52,7 @@ namespace Compilier
         }
         public static List<string> ShuntingYardAlgorithm(string expr)
         {
-            string patternToFixExpression = @"[a-zA-Z]+|[0-9]+|[+*/()-]";
-            var expression = Regex.Replace(expr.Replace(" ", ""), patternToFixExpression, "$0 ").Trim();
+            var expression = Regex.Replace(expr, @"[+\-*/()]", " $& ");
             string[] tokens = expression.Split(null);
             List<string> output = new List<string>();
             Stack<string> operators = new Stack<string>();
@@ -100,9 +99,8 @@ namespace Compilier
             return output;
         }
         public static AstOperator Parse(string expression)
-        {
-            string patternToFixExpression = @"[a-zA-Z]+|[0-9]+|[+*/()-\[ \]]";
-            var newExpression = Regex.Replace(expression.Replace(" ", ""), patternToFixExpression, "$0 ").Trim();
+        { 
+            var newExpression = Regex.Replace(expression, @"[+\-*/()]", " $& ");
             var postfix = ShuntingYardAlgorithm(newExpression);//Получаем выражение в польской нотации 
             Stack<AbstractSyntaxTree> st = new Stack<AbstractSyntaxTree>();//Создаем стек для узлов
             AbstractSyntaxTree t, t1, t2;
@@ -122,7 +120,7 @@ namespace Compilier
                 }
                 else if (IsNumber(postfix[i]))
                 {
-                    t = new AstOperand("imm", Convert.ToInt32(postfix[i]));//Если Элемент число то просто добавляем в стек новый узел без дочерних элементов
+                    t = new AstOperand("imm", Convert.ToDouble(postfix[i]));//Если Элемент число то просто добавляем в стек новый узел без дочерних элементов
                     st.Push(t);
                 }
             }
@@ -131,9 +129,8 @@ namespace Compilier
             return (AstOperator)t;//Последний элемент в стеке и будет корнем нашего дерева
         }
         public static AstOperator BuildTree(string expression)
-        {
-            string patternToFixExpression = @"[a-zA-Z]+|[0-9]+|[+*/()-\[ \]]";
-            expression = Regex.Replace(expression.Replace(" ", ""), patternToFixExpression, "$0 ").Trim();
+        {  
+            expression = Regex.Replace(expression, @"[+\-*/()]", " $& ");
             string[] parts = expression.Split("] ");
             string newExpression = parts[1];
             List<string> args = new List<string>();
@@ -164,7 +161,7 @@ namespace Compilier
                 }
                 else if (IsNumber(postfix[i]))
                 {
-                    t = new AstOperand("imm", Convert.ToInt32(postfix[i]));//Если Элемент число то просто добавляем в стек новый узел без дочерних элементов
+                    t = new AstOperand("imm", Convert.ToDouble(postfix[i]));//Если Элемент число то просто добавляем в стек новый узел без дочерних элементов
                     st.Push(t);
                 }
             }

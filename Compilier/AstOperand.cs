@@ -6,7 +6,7 @@ namespace Compilier
 {
     public class AstOperand : AbstractSyntaxTree
     {
-        public AstOperand(string status, int value)
+        public AstOperand(string status, double value)
         {
             Status = status;
             Value = value.ToString();

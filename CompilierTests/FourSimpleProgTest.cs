@@ -13,8 +13,8 @@ namespace CompilierTests
         {
             var compiler = new Compiler();
             var p3 = compiler.ThirdPass(compiler.SecondPass(compiler.FirstPass("[ h g u o ] h + g + u * o * ( 2 + 2 )")));
-            var args = new int[4] { 11,12,13,14 };
-            var res = Simulator.Calculate(p3, args);
+            var args = new double[4] { 11,12,13,14 };
+            var res = Simulator.Simulate(p3, args);
             res.Should().Be(751);
         }
     }

@@ -6,9 +6,15 @@ using System.Text.RegularExpressions;
 namespace Compilier
 {
     public static class Simulator
-    {
-        public static string PolishNotation = string.Empty;
-        public static int Calculate(List<string> pass3, int[] args)
+    { 
+        public static string PolishNotation { get; set; }
+        public static List<string> Postfix=new List<string>();
+        public static double Calculate(string expression, double[] args)
+        {
+            Compiler compiler = new Compiler();
+            return Simulate(compiler.ThirdPass(compiler.SecondPass(compiler.FirstPass(expression))), args);
+        }
+        public static double Simulate(List<string> pass3, double[] args)
         {
             var list = InfixToAstParser.ShuntingYardAlgorithm(string.Join("", pass3));
             string patternToFindLetters = @"[a-z]+$";
@@ -17,7 +23,7 @@ namespace Compilier
             {
                 if (Regex.IsMatch(element.ToString(), patternToFindLetters))
                 {
-                    int value = args[InfixToAstParser.ExpressionArgs.IndexOf(element.ToString())];
+                    double value = args[InfixToAstParser.ExpressionArgs.IndexOf(element.ToString())];
                     tokens.Add(value.ToString());
                 }
                 else
@@ -25,14 +31,14 @@ namespace Compilier
                     tokens.Add(element.ToString());
                 }
             }
-            Stack<int> resultStack = new Stack<int>();
+            Stack<double> resultStack = new Stack<double>();
             foreach (var token in tokens)
             {
-                int leftOperand;
-                int rightOperand;
+                double leftOperand;
+                double rightOperand;
                 if (InfixToAstParser.IsNumber(token.ToString()))
                 {
-                    resultStack.Push(int.Parse(token.ToString()));
+                    resultStack.Push(double.Parse(token.ToString()));
                 }
                 switch (token)
                 {
@@ -65,10 +71,12 @@ namespace Compilier
                     var unOpTree = tree as AstOperand;
                     if (unOpTree.Status == "arg")
                     {
+                        Postfix.Add(InfixToAstParser.ExpressionArgs[int.Parse(unOpTree.Value)]);
                         PolishNotation += InfixToAstParser.ExpressionArgs[int.Parse(unOpTree.Value)];
                     }
                     else
                     {
+                        Postfix.Add(unOpTree.Value);
                         PolishNotation += unOpTree.Value;
                     }
                 }
@@ -76,6 +84,7 @@ namespace Compilier
                 {
                     NodesToPolishNotation(newTree.LeftChild);
                     NodesToPolishNotation(newTree.RightChild);
+                    Postfix.Add(newTree.Value);
                     PolishNotation += newTree.Value;
                 }
             }

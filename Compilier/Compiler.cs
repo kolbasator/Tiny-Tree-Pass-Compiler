@@ -14,9 +14,9 @@ namespace Compilier
         }
         public AbstractSyntaxTree SecondPass(AbstractSyntaxTree tree)
         {
-            Simulator.PolishNotation = string.Empty;
+            Simulator.Postfix.Clear(); 
             Simulator.NodesToPolishNotation(tree);
-            var tokens = InfixToAstParser.ShuntingYardAlgorithm(InfixToAstParser.PostfixToInfix(Simulator.PolishNotation));
+            var tokens = InfixToAstParser.ShuntingYardAlgorithm(InfixToAstParser.PostfixToInfix(Simulator.Postfix));
             List<string> resultStack = new List<string>();
             foreach (var token in tokens)
             {
@@ -38,26 +38,26 @@ namespace Compilier
                 switch (token)
                 {
                     case "+":
-                        resultStack.Add(Convert.ToString(Convert.ToInt32(leftOperand) + Convert.ToInt32(rightOperand)));
+                        resultStack.Add(Convert.ToString(Convert.ToDouble(leftOperand) + Convert.ToDouble(rightOperand)));
                         break;
                     case "-":
-                        resultStack.Add(Convert.ToString(Convert.ToInt32(leftOperand) - Convert.ToInt32(rightOperand)));
+                        resultStack.Add(Convert.ToString(Convert.ToDouble(leftOperand) - Convert.ToDouble(rightOperand)));
                         break;
                     case "*":
-                        resultStack.Add(Convert.ToString(Convert.ToInt32(leftOperand) * Convert.ToInt32(rightOperand)));
+                        resultStack.Add(Convert.ToString(Convert.ToDouble(leftOperand) * Convert.ToDouble(rightOperand)));
                         break;
                     case "/":
-                        resultStack.Add(Convert.ToString(Convert.ToInt32(leftOperand) / Convert.ToInt32(rightOperand)));
+                        resultStack.Add(Convert.ToString(Convert.ToDouble(leftOperand) / Convert.ToDouble(rightOperand)));
                         break;
                 }
             } 
-            return InfixToAstParser.Parse(InfixToAstParser.PostfixToInfix(string.Join("", resultStack)));
+            return InfixToAstParser.Parse(InfixToAstParser.PostfixToInfix(resultStack));
         }
         public List<string> ThirdPass(AbstractSyntaxTree tree)
         {
-            Simulator.PolishNotation = string.Empty;
+            Simulator.Postfix.Clear(); 
             Simulator.NodesToPolishNotation(tree);
-            return InfixToAstParser.PostfixToInfix(Simulator.PolishNotation).ToCharArray().Select(x => Convert.ToString(x)).ToList();
+            return InfixToAstParser.PostfixToInfix(Simulator.Postfix).Select(x=>Convert.ToString(x)).ToList();
 
         }
     }
