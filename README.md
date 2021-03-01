@@ -1,12 +1,12 @@
 # Tiny-Three-Pass-Compilier 
 
-##Description
+## Description
 
   Tiny compiler . You can make some simple fucstion fand calculate it with args.
   Supported +,-,/,* operators.
   Also can parse expression without spaces.
 
-##Code snippet 
+## Code snippet 
 
    ```
    
