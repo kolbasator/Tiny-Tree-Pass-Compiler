@@ -52,7 +52,7 @@ namespace Compilier
         }
         public static List<string> ShuntingYardAlgorithm(string expr)
         {
-            var expression = Regex.Replace(expr, @"[+\-*/()]", " $& ");
+            var expression = Regex.Replace(expr.Replace(" ",string.Empty), @"[+\-*/()]", " $& ");
             string[] tokens = expression.Split(null);
             List<string> output = new List<string>();
             Stack<string> operators = new Stack<string>();
@@ -100,7 +100,7 @@ namespace Compilier
         }
         public static AstOperator Parse(string expression)
         { 
-            var newExpression = Regex.Replace(expression, @"[+\-*/()]", " $& ");
+            var newExpression = Regex.Replace(expression.Replace(" ", string.Empty), @"[+\-*/()]", " $& "); 
             var postfix = ShuntingYardAlgorithm(newExpression);//Получаем выражение в польской нотации 
             Stack<AbstractSyntaxTree> st = new Stack<AbstractSyntaxTree>();//Создаем стек для узлов
             AbstractSyntaxTree t, t1, t2;
@@ -130,15 +130,15 @@ namespace Compilier
         }
         public static AstOperator BuildTree(string expression)
         {  
-            expression = Regex.Replace(expression, @"[+\-*/()]", " $& ");
+            expression = Regex.Replace(expression.Replace(" ", string.Empty), @"[+\-*/()]", " $& "); 
             string[] parts = expression.Split("] ");
             string newExpression = parts[1];
             List<string> args = new List<string>();
-            foreach (var l in parts[0])
+            foreach (var element in parts[0])
             {
-                if (Regex.IsMatch(l.ToString(), @"[a-z]+$"))
+                if (Regex.IsMatch(element.ToString(), @"[a-z]+$"))
                 {
-                    args.Add(l.ToString());
+                    args.Add(element.ToString());
                 }
             }
             ExpressionArgs = args;
