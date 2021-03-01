@@ -1,15 +1,21 @@
 # Tiny-Three-Pass-Compilier 
 
-## Ошибки твои
+## Description
 
-- Используй нормальные названия переменных, что б можно было понять что ты определил
-- Используй `var` вместо прямой типизации. Ведь `var` выглядит получше чем `IReadOnlyCollection<IVeryHugeInterfaceName>`, не так ли?
-- Не используй литерал `""` если ты хочешь задать пустую строку, используй `string.Empty`
-- Называй методы по `Pascal Case`, например `public void MyMethodName(object param)`
-- Паттерны регулярных выражение помещай в отдельный переменные, не нагромождай код
-- Используй гит игнор файл
+   Tiny compiler . You can make some simple fucstion fand calculate it with args.
+   Supported +,-,/,* operators.
+   Also can parse expression without spaces.
 
-## Задание
+## Code snippet 
 
-- Переписать тесты используя Fluent Assertions
-- Переписать приложение в таком виде, что б была функция `int Calculate(string infix, int[] params)` принимающая 2 параметра: строку кода, и массив параметров интов, и возвращающая разультат выражения. Например, `Calculate("[ x y z ] ( 2*3*x + 5*y - 3*z ) / (1 + 3 + 2*2)", int[] {4, 0, 0})` должна вернуть `3`.
+   `` ''
+   Console.WriteLine( Simulator.Calculate("[ x y z ] ( 2*3*x + 5*y - 3*z ) / (1 + 3 + 2*2) + 1.76", new double[3] { 4, 8, 16 }));   // output :3.76
+   
+   Console.WriteLine( Simulator.Calculate("[ x ] (x+5.1)", new double[1] { 15 }));   // output :20.1
+   
+   Console.WriteLine( Simulator.Calculate("[ x ] x + 10", new double[1] { 1.56 }));   // output :1.56
+   
+   Console.WriteLine( Simulator.Calculate("[ x y l ] x * y + l", new double[3] { 100, 100 , 7.98 }));   // output :10007.98 
+   
+   Console.WriteLine( Simulator.Calculate("[a, b, c, d] ( 3 *a + 2*b + 5*c+ 7*d+100)", new double[4] { 4, 8,6,18 }));   // output :284 
+   `` ''
