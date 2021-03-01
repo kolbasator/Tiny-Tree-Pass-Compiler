@@ -2,7 +2,7 @@
 
 ## Description
 
-  Tiny compiler . You can make some simple fucstion fand calculate it with args.
+  Tiny compiler . You can make some simple function and calculate it with args.
   Supported +,-,/,* operators.
   Also can parse expression without spaces.
 
