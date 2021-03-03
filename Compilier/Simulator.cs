@@ -21,6 +21,11 @@ namespace Compilier
             List<string> tokens = new List<string>();
             foreach (var element in list)
             {
+                if(element == "sin" || element == "cos" || element == "ctn" || element == "tan" || element == "log" || element == "ex")
+                {
+                    tokens.Add(element.ToString());
+                    continue;
+                }
                 if (Regex.IsMatch(element.ToString(), patternToFindLetters))
                 {
                     double value = args[InfixToAstParser.ExpressionArgs.IndexOf(element.ToString())];
@@ -29,6 +34,7 @@ namespace Compilier
                 else
                 {
                     tokens.Add(element.ToString());
+                    continue;
                 }
             }
             Stack<double> resultStack = new Stack<double>();
@@ -57,7 +63,37 @@ namespace Compilier
                         leftOperand = resultStack.Pop();
                         resultStack.Push(leftOperand / rightOperand);
                         break;
+                    case "^":
+                        rightOperand = resultStack.Pop();
+                        leftOperand = resultStack.Pop();
+                        resultStack.Push(Math.Pow(leftOperand, rightOperand));
+                        break;
+                    case "sin":
+                        double numberToSin = resultStack.Pop();
+                        resultStack.Push(Math.Sin(numberToSin));
+                        break;
+                    case "cos":
+                        double numberToCos = resultStack.Pop();
+                        resultStack.Push(Math.Cos(numberToCos));
+                        break;
+                    case "ctn":
+                        double numberToCtn = resultStack.Pop();
+                        resultStack.Push(1 / Math.Tan(numberToCtn));
+                        break;
+                    case "tan":
+                        double numberToTan = resultStack.Pop();
+                        resultStack.Push(Math.Tan(numberToTan));
+                        break;
+                    case "log":
+                        double numberToLog = resultStack.Pop();
+                        resultStack.Push(Math.Log(numberToLog));
+                        break;
+                    case "ex":
+                        double numberToEx = resultStack.Pop();
+                        resultStack.Push(Math.Exp(numberToEx));
+                        break;
                 }
+
             }
             var result = resultStack.Pop();
             return result;
@@ -84,6 +120,12 @@ namespace Compilier
                 {
                     NodesToPolishNotation(newTree.LeftChild);
                     NodesToPolishNotation(newTree.RightChild);
+                    Postfix.Add(newTree.Value);
+                    PolishNotation += newTree.Value;
+                }
+                else if(newTree.LeftChild != null)
+                {
+                    NodesToPolishNotation(newTree.LeftChild); 
                     Postfix.Add(newTree.Value);
                     PolishNotation += newTree.Value;
                 }

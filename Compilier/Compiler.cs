@@ -20,6 +20,37 @@ namespace Compilier
             List<string> result = new List<string>();
             foreach (var token in tokens)
             {
+                if (Regex.IsMatch(token, @"cos|sin|tan|ctn|log|ex"))
+                {
+                    string operand = result[result.Count - 1];
+                    if (!Regex.IsMatch(operand.ToString(), @"[0-9]+$") || operand == "cos" || operand == "sin" || operand == "tan" || operand == "ctn" || operand == "log" || operand == "ex")
+                    {
+                        result.Add(token);
+                        continue;
+                    }
+                    result.RemoveAt(result.Count - 1);
+                    switch (token)
+                    {
+                        case "sin":
+                            result.Add(Convert.ToString(Math.Sin(Convert.ToDouble(operand))));
+                            break;
+                        case "cos":
+                            result.Add(Convert.ToString(Math.Cos(Convert.ToDouble(operand))));
+                            break;
+                        case "ctn": 
+                            result.Add(Convert.ToString(1 / Math.Tan(Convert.ToDouble(operand))));
+                            break;
+                        case "tan":
+                            result.Add(Convert.ToString(Math.Tan(Convert.ToDouble(operand))));
+                            break;
+                        case "log":
+                            result.Add(Convert.ToString(Math.Log(Convert.ToDouble(operand))));
+                            break;
+                        case "ex":
+                            result.Add(Convert.ToString(Math.Exp(Convert.ToDouble(operand))));
+                            break;
+                    }
+                }
                 const string pattern = @"[a-z]+|[0-9]+$";
                 if (Regex.IsMatch(token.ToString(), pattern))
                 {
@@ -48,6 +79,9 @@ namespace Compilier
                         break;
                     case "/":
                         result.Add(Convert.ToString(Convert.ToDouble(leftOperand) / Convert.ToDouble(rightOperand)));
+                        break;
+                    case "^": 
+                        result.Add(Convert.ToString(Math.Pow(Convert.ToDouble(leftOperand),Convert.ToDouble(rightOperand))));
                         break;
                 }
             } 

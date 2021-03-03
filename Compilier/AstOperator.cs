@@ -13,5 +13,12 @@ namespace Compilier
             RightChild = right;
             Status = "Op";
         }
+
+        public AstOperator(string value, AbstractSyntaxTree operand)
+        {
+            Value = value;
+            LeftChild = operand;
+            Status = "Op";
+        }
     }
 }
